@@ -1,0 +1,34 @@
+.Header {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.Content-Input {
+  align-content: center;
+  text-align: center;
+  width: 80%;
+  float: left;
+}
+
+.Input-Box {
+  width: 800px;
+}
+
+.Settings {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  display: inline-block;
+}
+
+.Error-Output {
+  width: 50%;
+  font-family: sans-serif;
+  float: left;
+}
+
+.Systems {
+  width: 50%;
+  float: right;
+  font-family: sans-serif;
+}

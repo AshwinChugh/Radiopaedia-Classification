@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block head %} {% endblock %} {% block body %}
+<div class="Header">
+  <h1>Radiopedia Text Classification</h1>
+  <h4>
+    Enter an article's content into the box below and the text Classification
+    algorithm will attempt to determine the article's systems.
+  </h4>
+
+  <div>
+    <div>
+      <form action="/" method="POST">
+        <input class="Input-Box" type="text" name="article_content" />
+        <br />
+        <br />
+        <input type="submit" value="Find Systems" />
+        <div class="Settings">
+          <div style="align-items: center; display: inline-block;">
+            <h6>Threshold Value(0-1.0):</h6>
+            <input type="text" name="threshold_input" />
+          </div>
+          <div style="align-items: center; display: inline-block;">
+            <h6>Number of predictions(1-24):</h6>
+            <input type="text" name="prediction_count" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="Error-Output">
+    <h3>Description:</h3>
+    <h5>
+      Copy paste the contents or text of a Radiopedia article in the box
+      above.<br />
+      <br />
+      Click on "Find Systems" to run the model and predict the system.<br /><br />
+
+      For some reason, the app runs SIGNIFICANTLY slower on Heroku so give the
+      app about 10 seconds to load a result.<br /><br />
+      If nothing prints, that means the model was unable to predict a result
+      with the set threshold value -- try reducing it.<br /><br />
+
+      Threshold Value -- The probability of the prediction being correct. 0.3 =
+      30% change, 0.6 = 60% chance<br />
+      More input text will increase the probability of a prediction. Less text
+      --> Lower threshold.<br />
+      If no value is specified, the threshold is defaulted to 0.3(30%)<br /><br />
+
+      Prediction Count -- The number of labels to predict out. 1 = 1 label
+      predicted, 5 = 5 labels to predict <br />
+      If no value is specified, prediction count is defaulted to 1<br /><br />
+
+      If no system is returned after running the model, that means the model was
+      <br />
+      unable to find a system with the set threshold value. The model will also
+      <br />
+      only return the maximum number of systems it can with the set threshold
+      value <br />
+      if it can not return the number of systems specified. <br /><br />
+    </h5>
+    <br />
+  </div>
+
+  <div class="Systems">
+    <h3>Systems:</h3>
+    {% for prediction in predictions %}
+    <h4>{{prediction}}</h4>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="Settings"></div>
+
+{% endblock %}
